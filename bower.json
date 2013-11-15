@@ -1,0 +1,15 @@
+{
+  "name": "adapt-contrib-text",
+  "version": "0.0.1",
+  "homepage": "https://github.com/darylhedley/adapt-contrib-text",
+  "authors": [
+    "Daryl Hedley <darylhedley@hotmail.com>"
+  ],
+  "description": "A simple core contributed text component",
+  "main": "/js/adapt-contrib-text.js",
+  "keywords": [
+    "adapt-plugin",
+    "adapt-component"
+  ],
+  "license": "GPLv3"
+}
