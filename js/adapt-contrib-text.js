@@ -4,8 +4,8 @@ define(["coreViews/componentView", "coreJS/adapt"], function(ComponentView, Adap
         
         postRender: function() {
             console.log("rendering");
-            this.checkReadyStatus();
-            this.checkCompletionStatus();
+            this.setReadyStatus();
+            this.setCompletionStatus();
         }
         
     });
