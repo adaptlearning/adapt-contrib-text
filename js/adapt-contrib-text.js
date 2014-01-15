@@ -9,14 +9,19 @@ define(function(require) {
 	var Adapt = require('coreJS/adapt');
 
     var Text = ComponentView.extend({
+
+        events: {
+            'inview .text-body': 'inview'
+        },
         
         postRender: function() {
-        	this.$('.text-body').on('inview', _.bind(function(visible) {
-            	if (visible) {
-            		this.setCompletionStatus();
-            	}
-            }, this));
             this.setReadyStatus();
+        }
+
+        inview: function(event, visible) {
+            if (visible) {
+                this.setCompletionStatus();
+            }
         }
         
     });
