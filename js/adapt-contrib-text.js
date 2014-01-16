@@ -16,7 +16,7 @@ define(function(require) {
         
         postRender: function() {
             this.setReadyStatus();
-        }
+        },
 
         inview: function(event, visible) {
             if (visible) {
