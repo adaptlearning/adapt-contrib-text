@@ -11,7 +11,7 @@ define(function(require) {
     var Text = ComponentView.extend({
 
         events: {
-            'inview .text-body': 'inview'
+            'inview': 'inview'
         },
         
         postRender: function() {
