@@ -1,7 +1,9 @@
 {
   "name": "adapt-contrib-text",
-  "version": "0.0.1",
-  "description": "An text component",
+  "version": "0.0.2",
+  "description": "A text component",
+  "displayName" : "Text",
+  "component" : "text",
   "main": "",
   "scripts": {
     "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
