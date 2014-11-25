@@ -1,20 +1,26 @@
 /*
-* adapt-contrib-text
-* License - http://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
-* Maintainers - Daryl Hedley <darylhedley@hotmail.com>, Brian Quinn <brian@learningpool.com>
-*/
+ * adapt-contrib-text
+ * License - http://github.com/adaptlearning/adapt_framework/blob/master/LICENSE
+ * Maintainers - Daryl Hedley <darylhedley@hotmail.com>, Brian Quinn <brian@learningpool.com>
+ */
 define(function(require) {
 
     var ComponentView = require('coreViews/componentView');
     var Adapt = require('coreJS/adapt');
 
     var Text = ComponentView.extend({
-        
+
+        preRender: function() {
+            // Checks to see if the text should be reset on revisit
+            this.checkIfResetOnRevisit();
+        },
+
         postRender: function() {
             this.setReadyStatus();
 
             // Check if instruction or body is set, otherwise force completion
-            var cssSelector = this.$('.component-instruction').length > 0 ? '.component-instruction' 
+            var cssSelector = this.$('.component-instruction').length > 0
+                ? '.component-instruction'
                 : (this.$('.component-body').length > 0 ? '.component-body' : null);
 
             if (!cssSelector) {
@@ -25,6 +31,18 @@ define(function(require) {
             }
         },
 
+        // Used to check if the text should reset on revisit
+        checkIfResetOnRevisit: function() {
+            var isResetOnRevisit = this.model.get('_isResetOnRevisit');
+
+            // If reset is enabled set defaults
+            if (isResetOnRevisit) {
+                this.model.set({
+                    _isEnabled: true,
+                    _isComplete: false
+                });
+            }
+        },
 
         inview: function(event, visible, visiblePartX, visiblePartY) {
             if (visible) {
@@ -37,15 +55,17 @@ define(function(require) {
                     this._isVisibleBottom = true;
                 }
 
-                if (this._isVisibleTop && this._isVisibleBottom) {                   
+                if (this._isVisibleTop && this._isVisibleBottom) {
                     this.$(this.model.get('cssSelector')).off('inview');
                     this.setCompletionStatus();
                 }
             }
         }
-        
+
     });
-    
-    Adapt.register("text", Text);
-    
+
+    Adapt.register('text', Text);
+
+    return Text;
+
 });
