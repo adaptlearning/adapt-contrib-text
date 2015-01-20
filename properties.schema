@@ -7,7 +7,8 @@
     "_supportedLayout": {
       "type": "enum",
       "required": true,
-      "default": ["full-width", "half-width"]
+      "default": ["full-width", "half-width"],
+      "editorOnly": true
     },
   	"instruction": {
   		"type": "string",
