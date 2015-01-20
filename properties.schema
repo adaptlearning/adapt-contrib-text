@@ -4,6 +4,11 @@
   "id": "http://jsonschema.net",
   "$ref": "http://localhost/plugins/content/component/model.schema",
   "properties":{
+    "_supportedLayout": {
+      "type": "enum",
+      "required": true,
+      "default": ["full-width", "half-width"]
+    },
   	"instruction": {
   		"type": "string",
   		"required": false,
