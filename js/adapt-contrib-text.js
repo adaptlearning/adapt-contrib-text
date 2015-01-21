@@ -12,7 +12,7 @@ define(function(require) {
         
         postRender: function() {
             this.setReadyStatus();
-            this.listenTo(this.model, 'change:_isCompelte', this.removeInviewListener);
+            this.listenTo(this.model, 'change:_isComplete', this.removeInviewListener);
 
             // Check if instruction or body is set, otherwise force completion
             var cssSelector = this.$('.component-instruction').length > 0 ? '.component-instruction' 
