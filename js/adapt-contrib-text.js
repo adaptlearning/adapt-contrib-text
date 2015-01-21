@@ -12,6 +12,7 @@ define(function(require) {
         
         postRender: function() {
             this.setReadyStatus();
+            this.listenTo(this.model, 'change:_isCompelte', this.removeInviewListener);
 
             // Check if instruction or body is set, otherwise force completion
             var cssSelector = this.$('.component-instruction').length > 0 ? '.component-instruction' 
@@ -38,9 +39,14 @@ define(function(require) {
                 }
 
                 if (this._isVisibleTop && this._isVisibleBottom) {                   
-                    this.$(this.model.get('cssSelector')).off('inview');
                     this.setCompletionStatus();
                 }
+            }
+        },
+
+        removeInviewListener: function(model, changeAttribute) {
+            if (changeAttribute) {
+                this.$(this.model.get('cssSelector')).off('inview');
             }
         }
         
