@@ -48,6 +48,11 @@ define(function(require) {
             if (changeAttribute) {
                 this.$(this.model.get('cssSelector')).off('inview');
             }
+        },
+
+        remove: function() {
+            this.$(this.model.get('cssSelector')).off('inview');
+            Backbone.View.prototype.remove.apply(this, arguments);
         }
         
     });
