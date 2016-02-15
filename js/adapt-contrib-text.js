@@ -17,10 +17,10 @@ define(function(require) {
             var cssSelector = this.$('.component-instruction').length > 0
                 ? '.component-instruction'
                 : (this.$('.component-title').length > 0 
-                ? '.component-title' 
-                : (this.$('.component-body').length > 0 
-                ? '.component-body' 
-                : null));
+                    ? '.component-title' 
+                    : (this.$('.component-body').length > 0 
+                        ? '.component-body' 
+                        : null));
 
             if (!cssSelector) {
                 this.setCompletionStatus();
@@ -51,7 +51,7 @@ define(function(require) {
                     this._isVisibleBottom = true;
                 }
 
-                if (this._isVisibleTop && this._isVisibleBottom) {
+                if (this._isVisibleTop || this._isVisibleBottom) {
                     this.$(this.model.get('cssSelector')).off('inview');
                     this.setCompletionStatus();
                 }
