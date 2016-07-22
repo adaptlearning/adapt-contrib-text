@@ -30,11 +30,11 @@ define(function(require) {
          * determines which element should be used for inview logic - body, instruction or title - and returns the selector for that element
          */
         getInviewElementSelector: function() {
-            if(this.$('.component-body').length > 0) return '.component-body';
+            if(this.model.get('body')) return '.component-body';
 
-            if(this.$('.component-instruction').length > 0) return '.component-instruction';
+            if(this.model.get('instruction')) return '.component-instruction';
             
-            if(this.$('.component-title').length > 0) return '.component-title';
+            if(this.model.get('title')) return '.component-title';
 
             return null;
         },
