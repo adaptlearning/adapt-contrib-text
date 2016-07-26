@@ -34,7 +34,7 @@ define(function(require) {
 
             if(this.model.get('instruction')) return '.component-instruction';
             
-            if(this.model.get('title')) return '.component-title';
+            if(this.model.get('displayTitle')) return '.component-title';
 
             return null;
         },
