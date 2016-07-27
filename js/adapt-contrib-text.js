@@ -6,31 +6,39 @@ define(function(require) {
     var Text = ComponentView.extend({
 
         preRender: function() {
-            // Checks to see if the text should be reset on revisit
             this.checkIfResetOnRevisit();
         },
 
         postRender: function() {
             this.setReadyStatus();
 
-            // Check if instruction or title or body is set, otherwise force completion
-            var cssSelector = this.$('.component-instruction').length > 0
-                ? '.component-instruction'
-                : (this.$('.component-title').length > 0 
-                ? '.component-title' 
-                : (this.$('.component-body').length > 0 
-                ? '.component-body' 
-                : null));
+            this.setupInview();
+        },
 
-            if (!cssSelector) {
+        setupInview: function() {
+            var selector = this.getInviewElementSelector();
+
+            if (!selector) {
                 this.setCompletionStatus();
             } else {
-                this.model.set('cssSelector', cssSelector);
-                this.$(cssSelector).on('inview', _.bind(this.inview, this));
+                this.model.set('inviewElementSelector', selector);
+                this.$(selector).on('inview', _.bind(this.inview, this));
             }
         },
 
-        // Used to check if the text should reset on revisit
+        /**
+         * determines which element should be used for inview logic - body, instruction or title - and returns the selector for that element
+         */
+        getInviewElementSelector: function() {
+            if(this.model.get('body')) return '.component-body';
+
+            if(this.model.get('instruction')) return '.component-instruction';
+            
+            if(this.model.get('displayTitle')) return '.component-title';
+
+            return null;
+        },
+
         checkIfResetOnRevisit: function() {
             var isResetOnRevisit = this.model.get('_isResetOnRevisit');
 
@@ -52,16 +60,25 @@ define(function(require) {
                 }
 
                 if (this._isVisibleTop && this._isVisibleBottom) {
-                    this.$(this.model.get('cssSelector')).off('inview');
+                    this.$(this.model.get('inviewElementSelector')).off('inview');
                     this.setCompletionStatus();
                 }
             }
-        }
+        },
 
+        remove: function() {
+            if(this.model.has('inviewElementSelector')) {
+                this.$(this.model.get('inviewElementSelector')).off('inview');
+            }
+            
+            ComponentView.prototype.remove.call(this);
+        }
+    },
+    {
+        template: 'text'
     });
 
     Adapt.register('text', Text);
 
     return Text;
-
 });
