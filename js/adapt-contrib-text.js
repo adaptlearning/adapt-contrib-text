@@ -22,7 +22,7 @@ define([
                 return;
             }
 
-            this.setupInviewListener(selector);
+            this.setupInviewCompletion(selector);
         },
 
         /**
