@@ -1,9 +1,10 @@
 define([
     'core/js/adapt',
-    'core/js/views/componentView'
-], function(Adapt, ComponentView) {
+    'core/js/views/componentView',
+    'core/js/models/componentModel'
+], function(Adapt, ComponentView, ComponentModel) {
 
-    var Text = ComponentView.extend({
+    var TextView = ComponentView.extend({
 
         preRender: function() {
             this.checkIfResetOnRevisit();
@@ -29,11 +30,11 @@ define([
          * determines which element should be used for inview logic - body, instruction or title - and returns the selector for that element
          */
         getInviewElementSelector: function() {
-            if(this.model.get('body')) return '.component-body';
+            if (this.model.get('body')) return '.component-body';
 
-            if(this.model.get('instruction')) return '.component-instruction';
+            if (this.model.get('instruction')) return '.component-instruction';
 
-            if(this.model.get('displayTitle')) return '.component-title';
+            if (this.model.get('displayTitle')) return '.component-title';
 
             return null;
         },
@@ -51,5 +52,8 @@ define([
         template: 'text'
     });
 
-    return Adapt.register('text', Text);
+    return Adapt.register('text', {
+        model: ComponentModel.extend({}),// create a new class in the inheritance chain so it can be extended per component type if necessary later
+        view: TextView
+    });
 });
