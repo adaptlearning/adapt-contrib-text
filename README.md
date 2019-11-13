@@ -33,11 +33,11 @@ The attributes listed below are used in *components.json* to configure **Text**,
 
 [**core model attributes**](https://github.com/adaptlearning/adapt_framework/wiki/Core-model-attributes): These are inherited by every Adapt component. [Read more](https://github.com/adaptlearning/adapt_framework/wiki/Core-model-attributes).
 
-**_component** (string): This value must be: `text`.
+**\_component** (string): This value must be: `text`.
 
-**_classes** (string): CSS class name to be applied to **Text**’s containing `div`. The class must be predefined in one of the Less files. Separate multiple classes with a space.
+**\_classes** (string): CSS class name to be applied to **Text**’s containing `div`. The class must be predefined in one of the Less files. Separate multiple classes with a space.
 
-**_layout** (string): This defines the horizontal position of the component in the block. Acceptable values are `full`, `left` or `right`.  
+**\_layout** (string): This defines the horizontal position of the component in the block. Acceptable values are `full`, `left` or `right`.  
 
 **title** (string): A reference title for the component. **title** is distinct from the **displayTitle** which, if present, appears above the component. **title** provides the opportunity to use a shortened form in tighter spaces, such as in menus or in the drawer.  
 
@@ -47,17 +47,17 @@ The attributes listed below are used in *components.json* to configure **Text**,
 guide the learner’s interaction with the component.
 
 **body** (string): Although optional, this text constitutes what is thought of as the primary *text* of the **Text** component. HTML is permitted.  
+
 <div float align=right><a href="#top">Back to Top</a></div>
 
 ## Limitations
 
-No known limitations.   
-
+No known limitations.
 
 ----------------------------
-**Version number:**  3.0.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>  
-**Framework versions:** 3.3+  
-**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-text/graphs/contributors)   
-**Accessibility support:** WAI AA   
-**RTL support:** yes  
-**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge 12, IE 11, IE Mobile 11, Safari iOS 9+10, Safari OS X 9+10, Opera    
+**Version number:**  4.0.0   <a href="https://community.adaptlearning.org/" target="_blank"><img src="https://github.com/adaptlearning/documentation/blob/master/04_wiki_assets/plug-ins/images/adapt-logo-mrgn-lft.jpg" alt="adapt learning logo" align="right"></a>  
+**Framework versions:** 5+  
+**Author / maintainer:** Adapt Core Team with [contributors](https://github.com/adaptlearning/adapt-contrib-text/graphs/contributors)  
+**Accessibility support:** WAI AA  
+**RTL support:** Yes  
+**Cross-platform coverage:** Chrome, Chrome for Android, Firefox (ESR + latest version), Edge, IE11, Safari 12+13 for macOS/iOS/iPadOS, Opera  
