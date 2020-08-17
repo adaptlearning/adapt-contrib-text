@@ -1,7 +1,7 @@
 import { templates } from 'core/js/reactHelpers';
 
-export default function(view, model) {
+export default function(model, view) {
   return <div className="component__inner text__inner">
-    {templates.component(view, model)}
+    {templates.component(model, view)}
   </div>;
 }
