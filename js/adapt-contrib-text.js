@@ -1,8 +1,8 @@
 import Adapt from 'core/js/adapt';
 import TextView from './TextView';
-import ComponentModel from 'core/js/models/ComponentModel';
+import TextModel from './TextModel';
 
 export default Adapt.register('text', {
-  model: class TextModel extends ComponentModel {},
+  model: TextModel,
   view: TextView
 });
