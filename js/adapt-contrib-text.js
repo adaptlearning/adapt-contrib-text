@@ -1,6 +1,6 @@
 import Adapt from 'core/js/adapt';
-import TextView from './TextView';
-import TextModel from './TextModel';
+import TextView from './textView';
+import TextModel from './textModel';
 
 export default Adapt.register('text', {
   model: TextModel,
