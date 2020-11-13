@@ -1,0 +1,36 @@
+{
+  "$anchor": "text-component",
+  "$schema": "http://json-schema.org/draft/2019-09/schema#",
+  "type": "object",
+  "$merge": {
+    "source": {
+      "$ref": "component"
+    },
+    "with": {
+      "properties": {
+        "_supportedLayout": {
+          "type": "string",
+          "title": "Supported layout",
+          "default": "both",
+          "enum": [
+            "full-width",
+            "half-width",
+            "both"
+          ],
+          "_adapt": {
+            "editorOnly": true
+          }
+        },
+        "instruction": {
+          "type": "string",
+          "title": "Instruction",
+          "description": "This is the instruction text",
+          "default": "",
+          "_adapt": {
+            "translatable": true
+          }
+        }
+      }
+    }
+  }
+}
