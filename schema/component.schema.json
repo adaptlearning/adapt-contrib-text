@@ -24,7 +24,6 @@
         "instruction": {
           "type": "string",
           "title": "Instruction",
-          "description": "This is the instruction text",
           "default": "",
           "_adapt": {
             "translatable": true
