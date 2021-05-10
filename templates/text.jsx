@@ -1,7 +1,8 @@
+import React from 'react';
 import { templates } from 'core/js/reactHelpers';
 
-export default function(model, view) {
+export default function Text(props) {
   return <div className="component__inner text__inner">
-    {templates.component(model, view)}
+    <templates.header {...props} />
   </div>;
 }

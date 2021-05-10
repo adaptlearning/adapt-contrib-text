@@ -2,23 +2,14 @@ import ComponentView from 'core/js/views/componentView';
 
 class TextView extends ComponentView {
 
-  preRender() {
-    this.checkIfResetOnRevisit();
-  }
-
   postRender() {
     this.setReadyStatus();
-
     this.setupInview();
   }
 
   setupInview() {
     const selector = this.getInviewElementSelector();
-    if (!selector) {
-      this.setCompletionStatus();
-      return;
-    }
-
+    if (!selector) return this.setCompletionStatus();
     this.setupInviewCompletion(selector);
   }
 
@@ -27,22 +18,11 @@ class TextView extends ComponentView {
    */
   getInviewElementSelector() {
     if (this.model.get('body')) return '.component__body';
-
     if (this.model.get('instruction')) return '.component__instruction';
-
     if (this.model.get('displayTitle')) return '.component__title';
-
     return null;
   }
 
-  checkIfResetOnRevisit() {
-    const isResetOnRevisit = this.model.get('_isResetOnRevisit');
-
-    // If reset is enabled set defaults
-    if (isResetOnRevisit) {
-      this.model.reset(isResetOnRevisit);
-    }
-  }
 }
 
 TextView.template = 'text.jsx';
