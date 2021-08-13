@@ -5,6 +5,7 @@
   "homepage": "https://github.com/adaptlearning/adapt-contrib-text",
   "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
   "component" : "text",
+  "targetAttribute": "_text",
   "displayName" : "Text",
   "description": "A simple core contributed text component",
   "main": "/js/adapt-contrib-text.js",
