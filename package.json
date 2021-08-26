@@ -1,10 +1,11 @@
 {
   "name": "adapt-contrib-text",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "framework": ">=5.5",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-text",
-  "issues": "https://github.com/adaptlearning/adapt_framework/issues/new",
+  "bugs": "https://github.com/adaptlearning/adapt-contrib-text/issues",
   "component" : "text",
+  "targetAttribute": "_text",
   "displayName" : "Text",
   "description": "A simple core contributed text component",
   "main": "/js/adapt-contrib-text.js",
