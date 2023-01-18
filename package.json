@@ -4,14 +4,29 @@
   "framework": ">=5.14.0",
   "homepage": "https://github.com/adaptlearning/adapt-contrib-text",
   "bugs": "https://github.com/adaptlearning/adapt-contrib-text/issues",
-  "component" : "text",
+  "component": "text",
   "targetAttribute": "_text",
-  "displayName" : "Text",
+  "displayName": "Text",
   "description": "A simple core contributed text component",
   "main": "/js/adapt-contrib-text.js",
   "keywords": [
     "adapt-plugin",
     "adapt-component"
   ],
-  "license": "GPL-3.0"
+  "license": "GPL-3.0",
+  "dependencies": {
+    "react": "18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-jest": "^29.3.1",
+    "jest": "^29.3.1",
+    "jest-environment-jsdom": "^29.3.1",
+    "react-test-renderer": "^18.2.0"
+  },
+  "scripts": {
+    "test": "jest"
+  }
 }
