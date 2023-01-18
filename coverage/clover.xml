@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1674056630219" clover="3.2.0">
-  <project timestamp="1674056630219" name="All files">
+<coverage generated="1674061635107" clover="3.2.0">
+  <project timestamp="1674061635107" name="All files">
     <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1" elements="12" coveredelements="12" complexity="0" loc="10" ncloc="10" packages="1" files="1" classes="1"/>
     <file name="text.jsx" path="/Users/eleanorheath/Desktop/Adapt/adapt_framework/src/Components/adapt-contrib-text/templates/text.jsx">
       <metrics statements="10" coveredstatements="10" conditionals="1" coveredconditionals="1" methods="1" coveredmethods="1"/>
