@@ -19,7 +19,7 @@ afterEach(() => {
   container = null;
 });
 
-describe('Rendering', () => {
+describe('Rendering a text component', () => {
   it('should render the text components body', () => {
     const body = 'test body text';
     const props = {
