@@ -46,12 +46,7 @@ export default function Header(props) {
       </div>
     );
   }
-  if (!isSet) {
-    return (
-      <div> hii
-      </div>
-    );
-  }
+  if (!isSet) return null;
   return (
     <div id={`${_id}-header`} className={prefixClasses(classNamePrefixes, ['__header'])}>
       <div className={prefixClasses(classNamePrefixes, ['__header-inner'])}>

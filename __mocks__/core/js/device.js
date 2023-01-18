@@ -1,3 +1,3 @@
-export const device = {
-  screenSize: 'large'
+export default {
+  screenSize: jest.fn(() => 'large')
 };
