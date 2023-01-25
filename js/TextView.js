@@ -1,11 +1,16 @@
-class TextView {
+import ComponentView from 'core/js/views/componentView';
+
+class TextView extends ComponentView {
 
   postRender() {
+    this.setReadyStatus();
     this.setupInview();
   }
 
   setupInview() {
-    this.getInviewElementSelector();
+    const selector = this.getInviewElementSelector();
+    if (!selector) return this.setCompletionStatus();
+    this.setupInviewCompletion(selector);
   }
 
   /**

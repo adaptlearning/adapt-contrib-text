@@ -1,7 +1,7 @@
 import React from 'react';
 import Text from '../templates/text';
 import { act } from 'react-dom/test-utils';
-import { expect, jest } from '@jest/globals';
+import { afterEach, beforeEach, describe, expect, it, jest } from '@jest/globals';
 import { unmountComponentAtNode, render } from 'react-dom';
 
 let container = null;
