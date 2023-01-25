@@ -44,9 +44,8 @@ describe('TextView', () => {
     expect(textView.setCompletionStatus).not.toHaveBeenCalled();
   });
 
-  describe('setInviewElementSelector', () => {
+  describe('getInviewElementSelector', () => {
     beforeEach(() => {
-      textView = new TextView();
       textView.model = {
         get: jest.fn()
       };
