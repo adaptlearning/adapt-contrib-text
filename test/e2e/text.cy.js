@@ -1,19 +1,33 @@
-import Components from '../../src/course/en/components.json'
-const textComponent = Components[2]
+describe('Text', function () {
+  beforeEach(function () {
+    cy.getData().then(function (data) {
+      this.data = data;
+      cy.visit('/');
+    });
+  });
 
-describe('Menu Page', () => {
-  beforeEach(() => {
-    cy.visit('/');
-  })
+  it('should display the text component', function () {
+    const textComponents = this.data.components.filter((component) => component._id = 'c-15')
+    const { body, displayTitle } = textComponents[2];
 
-  it('should display the text component', () => {
+    const bodyWithoutHtml = body.replace(/<[^>]*>/g, '');
+
     cy.get('.menu-item').first().should('contain', 'Presentation Components').within(() => {
       cy.get('button').contains('View').click()
     });
 
     cy.get('.text').eq(1).within(() => {
-      cy.get('.text__title').should('contain', textComponent.displayTitle)
-      cy.get('.text__body').should('contain', 'Text')
+      if (displayTitle) {
+        cy.get('.text__title').should('contain', displayTitle);
+      } else {
+        cy.get('.text__title').should('not.exist');
+      }
+  
+      if (bodyWithoutHtml) {
+        cy.get('.text__body').should('contain', bodyWithoutHtml);
+      } else {
+        cy.get('.text__body').should('not.exist');
+      }
     })
   });
 });
