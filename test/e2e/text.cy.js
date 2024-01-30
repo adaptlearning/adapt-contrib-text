@@ -7,8 +7,8 @@ describe('Text', function () {
   });
 
   it('should display the text component', function () {
-    const textComponents = this.data.components.filter((component) => component._id = 'c-15')
-    const { body, displayTitle } = textComponents[2];
+    const textComponent = this.data.components.find((component) => component._id === 'c-15')
+    const { body, displayTitle } = textComponent;
 
     const bodyWithoutHtml = body.replace(/<[^>]*>/g, '');
 
