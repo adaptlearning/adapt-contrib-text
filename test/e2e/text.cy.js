@@ -1,22 +1,31 @@
 describe('Text', function () {
   beforeEach(function () {
     cy.getData().then(function (data) {
-      this.data = data;
+      this.pages = data.contentObjects.filter(item => item._type === 'page' && item._classes !== 'assessment');
+      this.articles = data.filter(item => item._type === 'article');
+      this.blocks = data.filter(item => item._type === 'block');
+      this.components = data.filter(item => item._type === 'component');
       cy.visit('/');
     });
   });
 
-  it('should display the text component', function () {
-    const textComponent = this.data.components.find((component) => component._id === 'c-15')
-    const { body, displayTitle } = textComponent;
+  it('should display the text components', function () {
+    const textComponents = this.components.filter((component) => component._component === 'text')
 
-    const bodyWithoutHtml = body.replace(/<[^>]*>/g, '');
+    this.pages.forEach((page, index) => {
+      cy.get('.menu-item__button').eq(index).click();
+      const articlesOnPage = this.articles.filter((article) => article._parentId === page._id).map(article => article._id)
+      const blocksOnPage = this.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
+      const componentsOnPage = textComponents.filter((component) => blocksOnPage.includes(component._parentId))
 
-    cy.get('.menu-item').first().should('contain', 'Presentation Components').within(() => {
-      cy.get('button').contains('View').click()
+      componentsOnPage.forEach(({ body, displayTitle }) => {
+        const bodyWithoutHtml = body.replace(/<[^>]*>/g, '');
+
+        cy.testContainsOrNotExists('.text__title', displayTitle)
+        cy.testContainsOrNotExists('.text__body', bodyWithoutHtml)
+      })
+
+      cy.visit('/');
     });
-
-    cy.testContainsOrNotExists('.text__title', displayTitle)
-    cy.testContainsOrNotExists('.text__body', bodyWithoutHtml)
   });
 });
