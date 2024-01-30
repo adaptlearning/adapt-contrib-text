@@ -16,18 +16,7 @@ describe('Text', function () {
       cy.get('button').contains('View').click()
     });
 
-    cy.get('.text').eq(1).within(() => {
-      if (displayTitle) {
-        cy.get('.text__title').should('contain', displayTitle);
-      } else {
-        cy.get('.text__title').should('not.exist');
-      }
-  
-      if (bodyWithoutHtml) {
-        cy.get('.text__body').should('contain', bodyWithoutHtml);
-      } else {
-        cy.get('.text__body').should('not.exist');
-      }
-    })
+    cy.testContainsOrNotExists('.text__title', displayTitle)
+    cy.testContainsOrNotExists('.text__body', bodyWithoutHtml)
   });
 });
