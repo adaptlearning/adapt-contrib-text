@@ -1,21 +1,16 @@
 describe('Text', function () {
   beforeEach(function () {
-    cy.getData().then(function (data) {
-      this.pages = data.contentObjects.filter(item => item._type === 'page' && item._classes !== 'assessment');
-      this.articles = data.filter(item => item._type === 'article');
-      this.blocks = data.filter(item => item._type === 'block');
-      this.components = data.filter(item => item._type === 'component');
-      cy.visit('/');
-    });
+    cy.getData()
+    cy.visit('/');
   });
 
   it('should display the text components', function () {
-    const textComponents = this.components.filter((component) => component._component === 'text')
+    const textComponents = this.data.components.filter((component) => component._component === 'text')
 
-    this.pages.forEach((page) => {
+    this.data.contentObjects.filter((page) => page._classes !== 'assessment').forEach((page) => {
       cy.visit(`/#/id/${page._id}`);
-      const articlesOnPage = this.articles.filter((article) => article._parentId === page._id).map(article => article._id)
-      const blocksOnPage = this.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
+      const articlesOnPage = this.data.articles.filter((article) => article._parentId === page._id).map(article => article._id)
+      const blocksOnPage = this.data.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
       const componentsOnPage = textComponents.filter((component) => blocksOnPage.includes(component._parentId))
 
       componentsOnPage.forEach(({ body, displayTitle }) => {
