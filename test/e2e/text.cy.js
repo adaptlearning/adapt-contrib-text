@@ -12,8 +12,8 @@ describe('Text', function () {
   it('should display the text components', function () {
     const textComponents = this.components.filter((component) => component._component === 'text')
 
-    this.pages.forEach((page, index) => {
-      cy.get('.menu-item__button').eq(index).click();
+    this.pages.forEach((page) => {
+      cy.visit(`/#/id/${page._id}`);
       const articlesOnPage = this.articles.filter((article) => article._parentId === page._id).map(article => article._id)
       const blocksOnPage = this.blocks.filter((block) => articlesOnPage.includes(block._parentId)).map(blocks => blocks._id)
       const componentsOnPage = textComponents.filter((component) => blocksOnPage.includes(component._parentId))
