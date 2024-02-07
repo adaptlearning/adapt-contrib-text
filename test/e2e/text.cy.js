@@ -9,27 +9,12 @@ describe('Text', function () {
     textComponents.forEach((textComponent) => {
       cy.visit(`/#/preview/${textComponent._id}`);
       const bodyWithoutHtml = textComponent.body.replace(/<[^>]*>/g, '');
-      
+
+      cy.testContainsOrNotExists('.text__title', textComponent.displayTitle)
+      cy.testContainsOrNotExists('.text__body', bodyWithoutHtml)
       // Make sure the current component is tested before moving to the next one
       // Custom cypress tests are async so we need to wait for them to pass first
-      let waited = false
-      function waitOneSecond() {
-        return new Cypress.Promise((resolve, reject) => {
-          setTimeout(() => {
-            waited = true
-    
-            resolve()
-          }, 1000)
-        })
-      }
-
-      cy.wrap(null).then(() => {
-        return waitOneSecond().then(() => {
-          cy.testContainsOrNotExists('.text__title', textComponent.displayTitle)
-          cy.testContainsOrNotExists('.text__body', bodyWithoutHtml)
-          expect(waited).to.be.true
-        })
-      })
+      cy.wait(1000)
     });
   });
 });
