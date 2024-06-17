@@ -5,9 +5,9 @@ describe('Text', function () {
 
   it('should display the text components', function () {
     const textComponents = this.data.components.filter(component => component._component === 'text');
+    const stripHtml = cy.helpers.stripHtml;
     textComponents.forEach(textComponent => {
       cy.visit(`/#/preview/${textComponent._id}`);
-      const stripHtml = cy.helpers.stripHtml;
 
       cy.testContainsOrNotExists('.text__body', stripHtml(textComponent.body));
       cy.testContainsOrNotExists('.text__title', stripHtml(textComponent.displayTitle));
