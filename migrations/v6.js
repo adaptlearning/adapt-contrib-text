@@ -1,16 +1,23 @@
-import { describe, whereFromPlugin, mutateContent, checkContent, updatePlugin } from 'adapt-migrations';
+import {
+  describe,
+  whereFromPlugin,
+  mutateContent,
+  checkContent,
+  updatePlugin,
+  getCourse
+} from 'adapt-migrations';
 import _ from 'lodash';
 
 /**
  * correct v1 schemas - legacy schema correct in v2.0.1
  */
 describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
-  whereFromPlugin('adapt-contrib-text - from v4.2.0 to v6.1.3', { name: 'adapt-contrib-text', version: '<6.1.3' });
   let course;
   const incorrectAriaRegionPath = '_globals._text';
   const ariaRegionPath = '_globals._components._text.ariaRegion';
-  mutateContent('adapt-contrib-text - update _globals ariaRegion', async content => {
-    course = content.find(({ _type }) => _type === 'course');
+  whereFromPlugin('adapt-contrib-text - from v4.2.0 to v6.1.3', { name: 'adapt-contrib-text', version: '<6.1.3' });
+  mutateContent('adapt-contrib-text - update _globals ariaRegion', async () => {
+    course = getCourse();
     if (!_.has(course, ariaRegionPath)) _.set(course, ariaRegionPath, '');
     _.unset(course, incorrectAriaRegionPath);
     return true;
