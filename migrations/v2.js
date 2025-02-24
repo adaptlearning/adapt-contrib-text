@@ -9,10 +9,10 @@ import {
 } from 'adapt-migrations';
 import _ from 'lodash';
 
-describe('adapt-contrib-text - v2.0.0 to v2.0.1', async () => {
+describe('adapt-contrib-text - to v2.0.1', async () => {
   let course;
   const ariaRegionPath = '_globals._components._text.ariaRegion';
-  whereFromPlugin('adapt-contrib-text - from v2.0.0 to v2.0.1', { name: 'adapt-contrib-text', version: '<2.0.1' });
+  whereFromPlugin('adapt-contrib-text - from <v2.0.1', { name: 'adapt-contrib-text', version: '<2.0.1' });
   whereContent('adapt-contrib-text - where missing _globals ariaRegion', async () => {
     course = getCourse();
     return !_.has(course, ariaRegionPath);

@@ -15,7 +15,7 @@ describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
   let course;
   const incorrectAriaRegionPath = '_globals._text';
   const ariaRegionPath = '_globals._components._text.ariaRegion';
-  whereFromPlugin('adapt-contrib-text - from v4.2.0 to v6.1.3', { name: 'adapt-contrib-text', version: '<6.1.3' });
+  whereFromPlugin('adapt-contrib-text - from v4.2.0 to v6.1.3', { name: 'adapt-contrib-text', version: '>= 4.2.0 <6.1.3' });
   mutateContent('adapt-contrib-text - update _globals ariaRegion', async () => {
     course = getCourse();
     if (!_.has(course, ariaRegionPath)) _.set(course, ariaRegionPath, '');
