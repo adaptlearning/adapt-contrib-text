@@ -4,7 +4,9 @@ import {
   mutateContent,
   checkContent,
   updatePlugin,
-  getCourse
+  getCourse,
+  testStopWhere,
+  testSuccessWhere
 } from 'adapt-migrations';
 import _ from 'lodash';
 
@@ -28,4 +30,29 @@ describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
     return true;
   });
   updatePlugin('adapt-contrib-text - update to v6.1.3', { name: 'adapt-contrib-text', version: '6.1.3', framework: '>=5.19.1' });
+
+  testSuccessWhere('correct version with empty course', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
+    content: [
+      { _type: 'course' }
+    ]
+  });
+
+  testSuccessWhere('correct version with course globals', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
+    content: [
+      { _type: 'course', _globals: { _components: { _text: {} } } }
+    ]
+  });
+
+  testSuccessWhere('correct version with incorrect course globals', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
+    content: [
+      { _type: 'course', _globals: { _text: {} } }
+    ]
+  });
+
+  testStopWhere('incorrect version', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.3' }]
+  });
 });
