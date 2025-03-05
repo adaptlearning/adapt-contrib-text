@@ -1,5 +1,6 @@
 import {
   describe,
+  whereContent,
   whereFromPlugin,
   mutateContent,
   checkContent,
@@ -15,14 +16,18 @@ import _ from 'lodash';
  */
 describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
   let course;
-  const incorrectAriaRegionPath = '_globals._text';
+  const incorrectAriaRegionPath = '_globals._text.ariaRegion';
   const ariaRegionPath = '_globals._components._text.ariaRegion';
 
   whereFromPlugin('adapt-contrib-text - from v4.2.0 to v6.1.3', { name: 'adapt-contrib-text', version: '>= 4.2.0 <6.1.3' });
 
-  mutateContent('adapt-contrib-text - update _globals ariaRegion', async () => {
+  whereContent('adapt-contrib-text - where missing correct _globals ariaRegion', async () => {
     course = getCourse();
-    if (!_.has(course, ariaRegionPath)) _.set(course, ariaRegionPath, '');
+    return !_.has(course, ariaRegionPath);
+  });
+
+  mutateContent('adapt-contrib-text - update _globals ariaRegion', async () => {
+    if (!_.has(course, ariaRegionPath)) _.set(course, ariaRegionPath, _.get(course, incorrectAriaRegionPath) || '');
     _.unset(course, incorrectAriaRegionPath);
     return true;
   });
@@ -35,14 +40,7 @@ describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
 
   updatePlugin('adapt-contrib-text - update to v6.1.3', { name: 'adapt-contrib-text', version: '6.1.3', framework: '>=5.19.1' });
 
-  testSuccessWhere('correct version with empty course', {
-    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
-    content: [
-      { _type: 'course' }
-    ]
-  });
-
-  testSuccessWhere('correct version with course globals', {
+  testSuccessWhere('correct version with empty correct course globals', {
     fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
     content: [
       { _type: 'course', _globals: { _components: { _text: {} } } }
@@ -52,7 +50,21 @@ describe('adapt-contrib-text - v4.2.0 to v6.1.3', async () => {
   testSuccessWhere('correct version with incorrect course globals', {
     fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
     content: [
+      { _type: 'course', _globals: { _text: { ariaRegion: 'Incorrect course globals' } } }
+    ]
+  });
+
+  testSuccessWhere('correct version with empty incorrect course globals', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
+    content: [
       { _type: 'course', _globals: { _text: {} } }
+    ]
+  });
+
+  testStopWhere('correct version with correct course globals', {
+    fromPlugins: [{ name: 'adapt-contrib-text', version: '6.1.2' }],
+    content: [
+      { _type: 'course', _globals: { _components: { _text: { ariaRegion: '' } } } }
     ]
   });
 
